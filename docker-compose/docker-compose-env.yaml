@@ -1,0 +1,56 @@
+## 创建connor-cloud基础组件集群
+## https://blog.csdn.net/RtxTitanV/article/details/106688686
+version: "2"
+services:
+  nacos:
+    ## http://localhost:8848/nacos/#/login 登录地址
+    image: nacos/nacos-server:2.0.3
+    container_name: nacos-server
+    env_file:
+      - ./nacos/env/nacos-standlone-mysql.env
+    volumes:
+      - ./volumes/nacos/logs:/home/nacos/logs
+      - ./volumes/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      - mysql
+    restart: on-failure
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root #设置root帐号密码
+    volumes:
+      - ./volumes/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  ## rocketMQ name server
+  namesrv:
+    image: apacherocketmq/rocketmq:4.5.0
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./volumes/rocketmq/namesrv/logs:/home/rocketmq/logs
+    command: sh mqnamesrv
+
+  # rocketmq broker
+  broker:
+    image: apacherocketmq/rocketmq:4.5.0
+    container_name: rmqbroker
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    volumes:
+      - ./volumes/rocketmq/broker/logs:/home/rocketmq/logs
+      - ./volumes/rocketmq/broker/store:/home/rocketmq/store
+      - ./volumes/rocketmq/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.5.0/conf/broker.conf
+    command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
+    depends_on:
+      - namesrv

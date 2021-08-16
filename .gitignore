@@ -4,4 +4,8 @@
 data
 logs
 target
+docker-compose/volumes/rocketmq/logs
+docker-compose/volumes/rocketmq/store
+docker-compose/volumes/nacos/logs
+docker-compose/volumes/mysql
 

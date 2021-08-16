@@ -1,3 +1,4 @@
+## docker-compose -f .\standalone-rocketmq.yaml create
 version: "2"
 services:
   nacos:

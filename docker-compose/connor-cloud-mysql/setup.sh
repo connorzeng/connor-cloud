@@ -10,10 +10,10 @@ service mysql start
 sleep 3
 echo `service mysql status`
 
-echo '2.开始导入数据....'
+echo '2.开始导入nacos数据....'
 # 导入数据
-mysql < /mysql/schema.sql
-echo '3.导入数据完毕....'
+mysql < /mysql/nacos-schema.sql
+echo '3.导入nacos数据完毕....'
 
 sleep 3
 echo `service mysql status`
@@ -22,6 +22,8 @@ echo `service mysql status`
 echo '4.开始修改密码....'
 mysql < /mysql/privileges.sql
 echo '5.修改密码完毕....'
+
+echo '7.修改root密码....'
 
 # sleep 3
 echo `service mysql status`
