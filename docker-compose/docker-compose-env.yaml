@@ -29,6 +29,8 @@ services:
     ports:
       - "3306:3306"
 
+
+  ####--------------rcoketmq begin-----------------
   ## rocketMQ name server
   namesrv:
     image: apacherocketmq/rocketmq:4.5.0
@@ -36,10 +38,11 @@ services:
     ports:
       - 9876:9876
     volumes:
-      - ./volumes/rocketmq/namesrv/logs:/home/rocketmq/logs
+      - ./volumes/rocketmq/logs:/home/rocketmq/logs
+      - ./volumes/rocketmq/store:/home/rocketmq/store
     command: sh mqnamesrv
 
-  # rocketmq broker
+    # rocketmq broker
   broker:
     image: apacherocketmq/rocketmq:4.5.0
     container_name: rmqbroker
@@ -48,9 +51,21 @@ services:
       - 10911:10911
       - 10912:10912
     volumes:
-      - ./volumes/rocketmq/broker/logs:/home/rocketmq/logs
-      - ./volumes/rocketmq/broker/store:/home/rocketmq/store
-      - ./volumes/rocketmq/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.5.0/conf/broker.conf
+      - ./volumes/rocketmq/logs:/home/rocketmq/logs
+      - ./volumes/rocketmq/store:/home/rocketmq/store
+      - ./volumes/rocketmq/conf/broker.conf:/home/rocketmq/rocketmq-4.5.0/conf/broker.conf
     command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
     depends_on:
       - namesrv
+
+  console:
+    image: styletang/rocketmq-console-ng
+    container_name: rocketmq-console-ng
+    ports:
+      - 8087:8080
+    depends_on:
+      - namesrv
+    environment:
+      - JAVA_OPTS= -Dlogging.level.root=info   -Drocketmq.namesrv.addr=rmqnamesrv:9876
+      - Dcom.rocketmq.sendMessageWithVIPChannel=false
+  ####--------------rcoketmq end-----------------
