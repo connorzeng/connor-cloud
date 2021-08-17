@@ -9,10 +9,18 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./volume/redis/data:/data
+      - ./volumes/redis/data:/data
 
   redis-manager:
     image: reasonduan/redis-manager:2.1.0
     container_name: redis-manager
     environment:
-      - DATASOURCE_DATABASE='redis_manager'
+      - DATASOURCE_DATABASE=redis_manager
+      - DATASOURCE_URL=jdbc:mysql://mysql:3306/redis_manager?useUnicode=true&characterEncoding=utf-8
+      - DATASOURCE_USERNAME=redis_manager_orp
+      - DATASOURCE_PASSWORD=redis_manager_orp
+    ports:
+      - "8182:8182"
+    volumes:
+      - ./volumes/redis-manager/logs:/usr/local/redis-manager/logs
+      - ./volumes/redis-manager/data:/usr/local/redis-manager/data

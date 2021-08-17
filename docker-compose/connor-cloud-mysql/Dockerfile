@@ -11,7 +11,7 @@ FROM mysql:5.7
 
 #将所需文件放到容器中
 COPY setup.sh /mysql/setup.sh
-COPY nacos-schema.sql /mysql/nacos-schema.sql
+COPY nacos-schema.sql /mysql/schema-nacos.sql
 COPY privileges.sql /mysql/privileges.sql
 
 #设置容器启动时执行的命令
