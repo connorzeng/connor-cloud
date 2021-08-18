@@ -70,7 +70,7 @@ services:
       - Dcom.rocketmq.sendMessageWithVIPChannel=false
   ####--------------rcoketmq end-----------------
 
-
+  ## 图形化客户端: Another-Redis-Desktop-Manager.1.4.8.exe
   redis:
     image: redis:5.0.0
     container_name: redis
@@ -79,3 +79,19 @@ services:
       - "6379:6379"
     volumes:
       - ./volumes/redis/data:/data
+
+  ##/usr/sbin/nginx：主程序
+  ##/etc/nginx：存放配置文件
+  ##/usr/share/nginx：存放静态文件
+  ##/var/log/nginx：存放日志
+  nginx:
+    image: nginx:1.13
+    ports:
+      - "80:80"
+    volumes:
+      - ./volumes/nginx/conf.d:/etc/nginx/conf.d
+      - ./volumes/nginx/dist:/usr/share/nginx/html
+      - ./volumes/nginx/log:/var/log/nginx
+
+
+
