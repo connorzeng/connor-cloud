@@ -1,0 +1,27 @@
+#  apiVersion ：指定了 API 的版本号，当前我们使用的 K8S 中， Deployment 的版本号为 apps/v1，而在 1.9 之前使用的版本则为 apps/v1beta2，在 1.8 之前的版本使用的版本为 extensions/v1beta1。在编写配置文件时需要格外注意。
+#  kind ：指定了资源的类型。这里指定为 Deployment 说明是一次部署。
+#  metadata ：指定了资源的元信息。例如其中的 name 和 namespace 分别表示资源名称和所归属的 Namespace。
+#  spec ：指定了对资源的配置信息。例如其中的 replicas 指定了副本数当前指定为 1 。template.spec 则指定了 Pod 中容器的配置信息，这里的 Pod 中只部署了一个容器。
+#  kubectl apply -f redis-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis
+  name: saythx-redis
+  namespace: work
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - image: redis:5
+          name: redis
+          ports:
+            - containerPort: 6379
