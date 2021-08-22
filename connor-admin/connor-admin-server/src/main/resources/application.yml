@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+
+## 服务器注册信息
+spring:
+  application:
+    name: connor-admin-server
+  profiles:
+    active=: ${SPRING_ACTIVE:dev}
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/connor?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=GMT
+      username: ${DATASOURCE_USERNAME:connoropr}
+      password: ${DATASOURCE_PASSWORD:connoropr}
+      #连接池配置
+      min-idle: 5
+      initial-size: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #监控
+      filter:
+        wall:
+          enabled: true
+  mybatis-plus:
+    #xml地址
+    mapper-locations:
+      - classpath:mapper/*.xml
+    #实体扫描
+    type-aliases-package: com.connor.cloud.admin.dao.dto
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+      config:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+        file-extension: yml
+
+
+feign:
+  okhttp:
+    enabled: true
+
+
+logging:
+  level:
+    com.springboot.cloud: debug
+    org.springframework.web: debug
+    org.springframework.security: debug
+  path: logs/
+  file:
+    max-size: 1GB
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
