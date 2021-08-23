@@ -1,5 +1,6 @@
 ## 创建connor-cloud基础组件集群
 ## https://blog.csdn.net/RtxTitanV/article/details/106688686
+## docker-compose -f ./docker-compose-env.yaml up --no-start
 version: "2"
 services:
   nacos:
