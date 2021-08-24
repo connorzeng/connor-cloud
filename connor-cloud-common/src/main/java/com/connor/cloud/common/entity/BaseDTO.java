@@ -14,7 +14,7 @@ public class BaseDTO implements Serializable {
 
     public final static String DEFAULT_USERNAME = "system";
     @TableId(type = IdType.AUTO)
-    private String id;
+    private int id;
 
     @TableField(fill = FieldFill.INSERT)
     private String createdBy;

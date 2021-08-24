@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("connor.admin_user")
+@TableName("connor.admin_users")
 public class AdminUserDTO extends BaseDTO {
 
 

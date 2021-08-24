@@ -7,7 +7,7 @@ use connor;
 -- 创建admin用户
 CREATE TABLE admin_users
 (
-    id                      VARCHAR(20) PRIMARY KEY COMMENT '用户id',
+    id                      int(11) PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
     username                VARCHAR(100) NOT NULL COMMENT '用户名',
     password                VARCHAR(100) NOT NULL COMMENT '用户密码密文',
     name                    VARCHAR(200) COMMENT '用户姓名',
