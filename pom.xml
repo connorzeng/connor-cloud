@@ -12,11 +12,10 @@
         <module>order</module>
         <module>connor-cloud-gateway</module>
         <module>connor-cloud-demo</module>
-        <module>connor-admin</module>
-        <module>connor-user</module>
         <module>connor-cloud-common</module>
 
 
+        <module>connor-admin</module>
     </modules>
     <packaging>pom</packaging>
 

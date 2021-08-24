@@ -4,10 +4,10 @@
 data
 logs
 target
-docker-compose/volumes/rocketmq/logs
-docker-compose/volumes/rocketmq/store
-docker-compose/volumes/nacos/logs
-docker-compose/volumes/mysql
-docker-compose/volumes/nginx/dist
-docker-compose/volumes/nginx/log
+doc/docker-compose/volumes/rocketmq/logs
+doc/docker-compose/volumes/rocketmq/store
+doc/docker-compose/volumes/nacos/logs
+doc/docker-compose/volumes/mysql
+doc/docker-compose/volumes/nginx/dist
+doc/docker-compose/volumes/nginx/log
 
