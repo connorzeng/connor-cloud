@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    com.springboot.cloud: debug
+    org.springframework.web: debug
+    org.springframework.security: debug
+  file:
+    max-size: 1GB
+    path: logs/
+
+## 配置注册中心
+spring:
+  application:
+    name: connor-provider-sample-demo
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#      config:
+#        server-addr: localhost:8848
+#        file-extension: yml
+
+## 配置dubbo,配置暴露dubbo服务的service路径
+dubbo:
+  application:
+    name: connor-provider-sample-demo
+  registry:
+    protocol: nacos
+    address: localhost:8848
+    ## group 一定要写，否则DubboAdmin无法发现服务
+    group: dubbo
+
+#  protocols:
+#    dubbo:
+#      name: dubbo
+#      port: -1
+#    rest:
+#      name: rest
+#      port: 9090
+#      server: netty

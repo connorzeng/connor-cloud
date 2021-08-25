@@ -1,5 +1,4 @@
 ## 创建connor-cloud基础组件集群
-## https://blog.csdn.net/RtxTitanV/article/details/106688686
 ## docker-compose -f ./docker-compose-env.yaml up --no-start
 version: "2"
 services:
@@ -18,6 +17,20 @@ services:
       - "9555:9555"
     depends_on:
       - mysql
+    restart: on-failure
+
+
+  dubbo-admin:
+    image: apache/dubbo-admin:0.3.0
+    container_name: dubbo-admin
+    ports:
+      - "8079:8080"
+    depends_on:
+      - nacos
+    environment:
+      - admin.registry.address=nacos://nacos:8848
+      - admin.config-center=nacos://nacos:8848
+      - admin.metadata-report.address=nacos://nacos:8848
     restart: on-failure
 
   mysql:
