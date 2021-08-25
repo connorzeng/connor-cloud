@@ -12,10 +12,13 @@
         <module>order</module>
         <module>connor-cloud-gateway</module>
         <module>connor-cloud-demo</module>
+
+        <!-- 功能演示组件 -->
         <module>connor-cloud-common</module>
 
+        <!-- 业务组件 -->
+        <module>connor-biz</module>
 
-        <module>connor-admin</module>
     </modules>
     <packaging>pom</packaging>
 
