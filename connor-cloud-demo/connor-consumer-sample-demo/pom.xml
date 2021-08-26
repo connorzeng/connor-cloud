@@ -9,19 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>connor-provider-sample-demo</artifactId>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>6</source>
-                    <target>6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <artifactId>connor-consumer-sample-demo</artifactId>
 
 
     <properties>
@@ -30,12 +18,19 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.connor.cloud</groupId>
+            <artifactId>connor-common-sample-demo</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
         <!-- spring boot 启动 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
 
         <!-- spring boot 监控 -->
         <dependency>
@@ -43,13 +38,11 @@
             <artifactId>spring-boot-actuator</artifactId>
         </dependency>
 
-
         <!-- spring dubbo Spring Cloud Starter -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
 
         <!-- dubbo -->
         <!-- Dubbo Spring Cloud Starter -->
@@ -59,12 +52,25 @@
         </dependency>
 
 
+        <!--基础组合: lombok,common,swagger2 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.connor.cloud</groupId>
-            <artifactId>connor-common-sample-demo</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
+            <artifactId>connor-cloud-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+
+
+
+
     </dependencies>
 
 
@@ -81,5 +87,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>

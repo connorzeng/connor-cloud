@@ -11,7 +11,13 @@
 
     <modules>
         <module>connor-provider-sample-demo</module>
+        <module>connor-consumer-sample-demo</module>
+        <module>connor-common-sample-demo</module>
     </modules>
 
+    <dependencyManagement>
+
+
+    </dependencyManagement>
 
 </project>

@@ -1,0 +1,41 @@
+## 随机端口,防止冲突
+server:
+  port: 0
+
+logging:
+  level:
+    root: info
+    com.springboot.cloud: debug
+    org.springframework.web: debug
+    org.springframework.security: debug
+  file:
+    max-size: 1GB
+    path: logs/
+
+## 配置springcloud注册中心
+spring:
+  application:
+    name: connor-consumer-sample-demo
+  main:
+    # Spring Boot 2.1 需要设定
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
+
+## 配置dubbo,配置暴露dubbo服务的service路径
+dubbo:
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+  cloud:
+    subscribed-services: connor-provider-sample-demo
+  registry:
+    # 这个可以不用配了
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
