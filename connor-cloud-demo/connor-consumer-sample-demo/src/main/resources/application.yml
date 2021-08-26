@@ -35,7 +35,7 @@ dubbo:
     port: -1
   cloud:
     subscribed-services: connor-provider-sample-demo
-  registry:
-    # 这个可以不用配了
-    # 挂载到 Spring Cloud 注册中心
-    address: spring-cloud://localhost
+#  registry:
+#    # 这个可以不用配了
+#    # 挂载到 Spring Cloud 注册中心
+#    address: spring-cloud://localhost

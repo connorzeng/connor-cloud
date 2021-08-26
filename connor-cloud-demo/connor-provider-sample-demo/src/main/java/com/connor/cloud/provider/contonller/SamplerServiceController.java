@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/sample")
 @DubboService(version = "0.0.1")
 @Api("sample")
 public class SamplerServiceController implements SamplerService {

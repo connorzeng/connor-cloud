@@ -1,3 +1,15 @@
+
+
+spring:
+  application:
+    # Dubbo 应用名称
+    name: connor-provider-sample-demo
+  cloud:
+    nacos:
+      # Nacos 服务发现与注册配置
+      discovery:
+        server-addr: 127.0.0.1:8848
+
 dubbo:
   scan:
     # dubbo 服务扫描基准包
@@ -7,19 +19,23 @@ dubbo:
     name: dubbo
     # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
     port: -1
-  registry:
-    # 挂载到 Spring Cloud 注册中心
-    address: spring-cloud://localhost
+#  registry:
+#    # 挂载到 Spring Cloud 注册中心
+#    address: spring-cloud://localhost
 
-spring:
-  application:
-    # Dubbo 应用名称
-    name: connor-provider-sample-demo
-  main:
-    # Spring Boot 2.1 需要设定
-    allow-bean-definition-overriding: true
-  cloud:
-    nacos:
-      # Nacos 服务发现与注册配置
-      discovery:
-        server-addr: 127.0.0.1:8848
+
+logging:
+  level:
+    com.springboot.cloud: debug
+    org.springframework.web: debug
+    org.springframework.security: debug
+  file:
+    max-size: 1GB
+    path: logs/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
